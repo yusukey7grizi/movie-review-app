@@ -1,23 +1,10 @@
 import MovieList from "../components/MovieList/MovieList";
 import classes from "../styles/home.module.css";
-import { useEffect } from "react";
 import { db } from "../firebase";
 const index = (props) => {
   const today = new Date();
   const year = today.getFullYear();
-  useEffect(async () => {
-    let allMovies = [...props.Best, ...props.Popular, ...props.NowShowing];
-    console.log(allMovies);
-    console.log(db);
-    const res = await db.collection("MovieListt").get();
-    console.log(res);
-    const data = res.docs.map((doc) => ({
-      id: doc.id,
-      title: doc.data().title,
-      image: doc.data().image,
-    }));
-    console.log(data);
-  }, []);
+
   return (
     <div className={classes.root}>
       <div className={classes.listContainer}>
@@ -56,6 +43,14 @@ export const getStaticProps = async () => {
   const PopularUrl = `${base}/discover/movie?sort_by=popularity.desc&${api}`;
   const PopularRes = await fetch(PopularUrl);
   const PopularData = await PopularRes.json();
+  // save data in the database
+  const allMovies = [
+    ...NowShowingData.results,
+    ...BestData.results,
+    ...PopularData.results,
+  ];
+  const res = await db.collection("MovieCollection").doc("MovieList");
+  await res.set({ movies: allMovies });
   return {
     props: {
       NowShowing: NowShowingData.results,
