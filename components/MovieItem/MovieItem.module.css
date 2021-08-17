@@ -1,0 +1,8 @@
+.container {
+  padding: 10px;
+  height: 300px;
+}
+.image {
+  height: 55%;
+  border-radius: 25px;
+}

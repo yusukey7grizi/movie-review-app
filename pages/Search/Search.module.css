@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.searchInput {
+  text-align: left;
+}
+
+.inputContainer {
+  background-color: #ff9db0;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  margin-top: 5%;
+}

@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  width: 60%;
+  margin: auto;
+  padding: 10%;
+  height: 500px;
+}
+.inputContainer {
+  padding: 20px;
+}

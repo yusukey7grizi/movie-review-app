@@ -1,0 +1,8 @@
+.root {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: 800px;
+  overflow-y: auto;
+}
