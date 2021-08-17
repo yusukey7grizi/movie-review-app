@@ -3,6 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import { useState, useEffect } from "react";
 import ReviewList from "../../components/ReviewList/ReviewList";
 import classes from "./MovieDetail.module.css";
+import { db } from "../../firebase";
 import ReviewForm from "../../components/ReviewForm/ReviewForm";
 const MovieDetail = (props) => {
   const [form, setForm] = useState(false);
@@ -72,15 +73,23 @@ const MovieDetail = (props) => {
 };
 
 export const getStaticPaths = async () => {
+  const res = await db.collection("MovieCollection").doc("MovieList").get();
+  const movies = await res.data().movies;
+  const paths = movies.map((movie) => ({
+    params: { movieId: movie.id.toString() },
+  }));
   return {
     fallback: false,
-    paths: [{ params: { MovieId: "movieone" } }],
+    paths,
   };
 };
 
 export const getStaticProps = async (context) => {
   const movieId = context.params.MovieId;
-  console.log(movieId);
+  const res = await db.collection("MovieCollection").doc("MovieList").get();
+  const movies = await res.data().movies;
+  const selectedMovie = movies.find((movie) => movie.id === movieId.toString());
+
   return {
     props: {
       movieData: {
@@ -99,6 +108,7 @@ export const getStaticProps = async (context) => {
         genre: "plot",
         imdbRating: "plot",
       },
+      selectedMovie: selectedMovie,
     },
   };
 };
