@@ -5,8 +5,6 @@ const index = (props) => {
   const today = new Date();
   const year = today.getFullYear();
 
-  const [Movieset, setMovieset] = useState(false);
-
   return (
     <div className={classes.root}>
       <div className={classes.listContainer}>
