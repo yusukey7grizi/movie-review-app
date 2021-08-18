@@ -8,16 +8,23 @@ import ReviewForm from "../../components/ReviewForm/ReviewForm";
 const MovieDetail = (props) => {
   const [form, setForm] = useState(false);
   const router = useRouter();
-  console.log(props.selectedMovie);
+
   const ReviewSubmitHandler = (data) => {
     if (window.confirm("Are you sure you want to submit it?")) {
-      alert(data.nickname);
+      db.collection("MovieReviews").add({
+        movieId: props.movieData.id,
+        nickname: data.nickname,
+        gender: data.gender,
+        rating: data.rating,
+        comment: data.comment,
+      });
+      alert("Thank You For Submitting A Review!");
       router.push("/");
     } else {
       return false;
     }
   };
-  console.log(props.movieData.genre);
+  console.log(props.movieData);
   return (
     <div className={classes.root}>
       <div className={classes.topContainer}>
@@ -26,7 +33,7 @@ const MovieDetail = (props) => {
             className={classes.poster}
             src={props.movieData.image}
             alt={props.movieData.title}
-          />
+          />{" "}
         </div>
         <div className={classes.rightContent}>
           <h1 className={classes.title}>{props.movieData.title}</h1>
@@ -64,7 +71,7 @@ const MovieDetail = (props) => {
           {form ? (
             <ReviewForm ReviewSubmitHandler={ReviewSubmitHandler} />
           ) : (
-            <ReviewList />
+            <ReviewList reviews={props.reviews} />
           )}
         </div>
       </div>
@@ -108,6 +115,19 @@ export const getStaticProps = async (context) => {
   const genreNames = genresData.genres
     .filter((genre) => ids.includes(genre.id))
     .map((genre) => genre.name);
+  // get the reviews
+  const reviewData = await db.collection("MovieReviews").get();
+  const allReviews = await reviewData.docs.map((doc) => ({
+    id: doc.id,
+    movieId: doc.data().movieId,
+    nickname: doc.data().nickname,
+    gender: doc.data().gender,
+    rating: doc.data().rating,
+    comment: doc.data().comment,
+  }));
+  const selectedReviews = allReviews.filter(
+    (review) => review.movieId === selectedMovie.id
+  );
 
   return {
     props: {
@@ -120,8 +140,10 @@ export const getStaticProps = async (context) => {
         title: selectedMovie.title,
         language: language.english_name,
         genre: genreNames,
+        id: selectedMovie.id,
+        background: `https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`,
       },
-      selectedMovie: selectedMovie,
+      reviews: selectedReviews,
     },
   };
 };
