@@ -1,6 +1,7 @@
 import MovieList from "../components/MovieList/MovieList";
 import classes from "../styles/home.module.css";
 import { db } from "../firebase";
+
 const index = (props) => {
   const today = new Date();
   const year = today.getFullYear();
@@ -32,7 +33,7 @@ export const getStaticProps = async () => {
     today.getMonth() < 10 ? `0${today.getMonth()}` : today.getMonth();
   const date = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
   // fetch data for Movies Now Showing
-  const NowShowingUrl = `${base}/discover/movie?primary_release_date.gte=${year}-${month}-${date}&primary_release_date.lte=${year}-${month}-${date}&${api}`;
+  const NowShowingUrl = `${base}/movie/now_playing?${api}&language=en-US&page=1`;
   const NowShowingRes = await fetch(NowShowingUrl);
   const NowShowingData = await NowShowingRes.json();
   // fetch data for Best Movies of the year

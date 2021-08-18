@@ -8,7 +8,7 @@ import ReviewForm from "../../components/ReviewForm/ReviewForm";
 const MovieDetail = (props) => {
   const [form, setForm] = useState(false);
   const router = useRouter();
-  console.log(router.query.MovieId);
+  console.log(props.selectedMovie);
   const ReviewSubmitHandler = (data) => {
     if (window.confirm("Are you sure you want to submit it?")) {
       alert(data.nickname);
@@ -17,26 +17,26 @@ const MovieDetail = (props) => {
       return false;
     }
   };
-
+  console.log(props.movieData.genre);
   return (
     <div className={classes.root}>
       <div className={classes.topContainer}>
         <div className={classes.leftContent}>
-          <img src={props.movieData.image} alt={props.movieData.title} />
+          <img
+            className={classes.poster}
+            src={props.movieData.image}
+            alt={props.movieData.title}
+          />
         </div>
         <div className={classes.rightContent}>
-          <h1
-            className={classes.title}
-          >{`${props.movieData.title} / ${props.movieData.year}`}</h1>
-
-          <h3>{props.movieData.plot}</h3>
+          <h1 className={classes.title}>{props.movieData.title}</h1>
+          <h3>{props.movieData.overview}</h3>
           <hr className={classes.line} />
-          <h4>{`IMDB Rating: 　★${props.movieData.imdbRating}`}</h4>
-          <h4>{`Genre:　${props.movieData.genre}`}</h4>
+          <h4>
+            {`Genres:    ${props.movieData.genre.map((genre) => genre)} `}
+          </h4>
           <h4>{`Language:　${props.movieData.language}`}</h4>
           <h4>{`Released Date:　${props.movieData.released}`}</h4>
-          <h4>{`Duration:　${props.movieData.runtime}`}</h4>
-          <h4>{`Country:　${props.movieData.country}`}</h4>
         </div>
       </div>
 
@@ -85,28 +85,41 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  const movieId = context.params.MovieId;
+  const movieId = context.params.movieId;
   const res = await db.collection("MovieCollection").doc("MovieList").get();
   const movies = await res.data().movies;
-  const selectedMovie = movies.find((movie) => movie.id === movieId.toString());
+  const selectedMovie = movies.find((movie) => movie.id.toString() === movieId);
+  // get language
+  const api = "api_key=a192b273a2c1e46141694f43fc94d336";
+  const languageRes = await fetch(
+    `https://api.themoviedb.org/3/configuration/languages?${api}`
+  );
+  const languageData = await languageRes.json();
+  const language = languageData.find(
+    (language) => language.iso_639_1 === selectedMovie.original_language
+  );
+  // get genres
+  const genresRes = await fetch(
+    `https://api.themoviedb.org/3/genre/movie/list?${api}&language=en-US`
+  );
+  const genresData = await genresRes.json();
+
+  const ids = selectedMovie.genre_ids;
+  const genreNames = genresData.genres
+    .filter((genre) => ids.includes(genre.id))
+    .map((genre) => genre.name);
 
   return {
     props: {
       movieData: {
-        plot: "plot",
-        released: "plot",
-        actors: "plot",
-        director: "plot",
-        country: "plot",
-        runtime: "plot",
-        production: "plot",
-        image:
-          "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg",
-        title: "plot",
-        language: "plot",
-        year: "plot",
-        genre: "plot",
-        imdbRating: "plot",
+        overview: selectedMovie.overview,
+        released: selectedMovie.release_date,
+        image: selectedMovie.poster_path
+          ? `https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`
+          : "http://www.movienewz.com/img/films/poster-holder.jpg",
+        title: selectedMovie.title,
+        language: language.english_name,
+        genre: genreNames,
       },
       selectedMovie: selectedMovie,
     },
