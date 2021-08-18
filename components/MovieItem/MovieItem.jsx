@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import classes from "./MovieItem.module.css";
 import { useRouter } from "next/router";

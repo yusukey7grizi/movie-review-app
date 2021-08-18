@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./ReviewItem.module.css";
 const ReviewItem = (props) => {
   var stars = [];
