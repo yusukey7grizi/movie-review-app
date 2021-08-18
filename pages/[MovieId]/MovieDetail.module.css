@@ -1,16 +1,18 @@
 .topContainer {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 5%;
+
+  height: 500px;
 }
 
 .root {
   text-align: center;
-  margin-top: 10%;
 }
 .rightContent {
-  width: 40%;
+  width: 50%;
+  margin-left: 50px;
   text-align: left;
+  height: 80%;
   color: aliceblue;
 }
 .title {
@@ -25,8 +27,13 @@
   margin-top: 10%;
   background-color: rgb(221, 118, 118);
 }
+.poster {
+  height: 65%;
+}
+
 @media screen and (max-width: 800px) {
   .topContainer {
+    justify-content: center;
     flex-direction: column;
   }
   .rightContent {

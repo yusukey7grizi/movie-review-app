@@ -6,6 +6,7 @@ const SearchList = (props) => {
     <div className={classes.root}>
       {props.filteredMovies.map((movie) => (
         <MovieItem
+          id={movie.id}
           title={movie.title}
           image={
             movie.poster_path
