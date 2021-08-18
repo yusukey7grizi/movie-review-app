@@ -1,9 +1,15 @@
 import { Button } from "@material-ui/core";
 import { useRouter } from "next/dist/client/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReviewList from "../../components/ReviewList/ReviewList";
 import classes from "./MovieDetail.module.css";
 import { db } from "../../firebase";
+import { motion } from "framer-motion";
+import {
+  DetailPosterAnimation,
+  DetailTextAnimation,
+  ReviewAnimation,
+} from "../../Animation";
 import ReviewForm from "../../components/ReviewForm/ReviewForm";
 const MovieDetail = (props) => {
   const [form, setForm] = useState(false);
@@ -28,14 +34,24 @@ const MovieDetail = (props) => {
   return (
     <div className={classes.root}>
       <div className={classes.topContainer}>
-        <div className={classes.leftContent}>
+        <motion.div
+          variants={DetailPosterAnimation}
+          initial="hidden"
+          animate="visible"
+          className={classes.leftContent}
+        >
           <img
             className={classes.poster}
             src={props.movieData.image}
             alt={props.movieData.title}
           />{" "}
-        </div>
-        <div className={classes.rightContent}>
+        </motion.div>
+        <motion.div
+          variants={DetailTextAnimation}
+          initial="hidden"
+          animate="visible"
+          className={classes.rightContent}
+        >
           <h1 className={classes.title}>{props.movieData.title}</h1>
           <h3>{props.movieData.overview}</h3>
           <hr className={classes.line} />
@@ -44,10 +60,15 @@ const MovieDetail = (props) => {
           </h4>
           <h4>{`Language:　${props.movieData.language}`}</h4>
           <h4>{`Released Date:　${props.movieData.released}`}</h4>
-        </div>
+        </motion.div>
       </div>
 
-      <div className={classes.reviewContainer}>
+      <motion.div
+        variants={ReviewAnimation}
+        initial="hidden"
+        animate="visible"
+        className={classes.reviewContainer}
+      >
         <div
           style={{
             display: "flex",
@@ -74,7 +95,7 @@ const MovieDetail = (props) => {
             <ReviewList reviews={props.reviews} />
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

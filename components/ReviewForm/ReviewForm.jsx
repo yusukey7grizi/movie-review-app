@@ -30,12 +30,12 @@ const ReviewForm = (props) => {
             {...register("gender")}
             style={{ width: "100%", textAlign: "center" }}
           >
-            <MenuItem value={"Male"}>Male</MenuItem>
-            <MenuItem value={"Female"}>Female</MenuItem>
+            <MenuItem value={"male"}>Male</MenuItem>
+            <MenuItem value={"female"}>Female</MenuItem>
           </Select>
         </Grid>{" "}
         <Grid className={classes.inputContainer}>
-          <InputLabel id="demo-simple-select-label">Ratings</InputLabel>
+          <InputLabel id="demo-simple-select-label">Rating</InputLabel>
           <Select
             {...register("rating")}
             style={{ width: "100%", textAlign: "center" }}

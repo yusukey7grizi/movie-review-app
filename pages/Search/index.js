@@ -3,6 +3,8 @@ import SearchList from "../../components/SearchList/SearchList";
 import { db } from "../../firebase";
 import classes from "./Search.module.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { SearchAnimation } from "../../Animation";
 const index = (props) => {
   const [TextInput, setTextInput] = useState("");
   const filteredMovies = props.allMovies.filter((movie) =>
@@ -33,10 +35,10 @@ const index = (props) => {
           }}
         />
       </div>
-      <div>
+      <motion.div variants={SearchAnimation} initial="hidden" animate="visible">
         {" "}
         <SearchList filteredMovies={filteredMovies} />
-      </div>
+      </motion.div>
     </div>
   );
 };

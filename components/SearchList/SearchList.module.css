@@ -6,3 +6,7 @@
   height: 800px;
   overflow-y: auto;
 }
+.root::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}

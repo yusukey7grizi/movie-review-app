@@ -1,26 +1,32 @@
 import MovieList from "../components/MovieList/MovieList";
 import classes from "../styles/home.module.css";
 import { db } from "../firebase";
-
+import { HomeAnimation } from "../Animation";
+import { motion } from "framer-motion";
 const index = (props) => {
   const today = new Date();
   const year = today.getFullYear();
 
   return (
-    <div className={classes.root}>
-      <div className={classes.listContainer}>
+    <motion.div
+      variants={HomeAnimation}
+      initial="hidden"
+      animate="visible"
+      className={classes.root}
+    >
+      <motion.div className={classes.listContainer}>
         <h1 className={classes.title}> Movies Now Showing {`>`}</h1>
         <MovieList Movies={props.NowShowing} />
-      </div>
-      <div className={classes.listContainer}>
+      </motion.div>
+      <motion.div className={classes.listContainer}>
         <h1 className={classes.title}>Best Movies in {year} </h1>
         <MovieList Movies={props.Best} />
-      </div>{" "}
-      <div className={classes.listContainer}>
+      </motion.div>{" "}
+      <motion.div className={classes.listContainer}>
         <h1 className={classes.title}>Popular Movies {`>`}</h1>
         <MovieList Movies={props.Popular} />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

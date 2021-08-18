@@ -3,3 +3,7 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+.reviewList::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
