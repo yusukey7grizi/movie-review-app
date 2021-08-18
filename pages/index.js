@@ -40,7 +40,7 @@ export const getStaticProps = async () => {
   const BestUrl = `${base}/discover/movie?primary_release_year=${year}&sort_by=vote_average.desc&${api}`;
   const BestRes = await fetch(BestUrl);
   const BestData = await BestRes.json();
-  // fetch data for Most Popular Movies
+  // fetch data for Popular Movies
   const PopularUrl = `${base}/discover/movie?sort_by=popularity.desc&${api}`;
   const PopularRes = await fetch(PopularUrl);
   const PopularData = await PopularRes.json();

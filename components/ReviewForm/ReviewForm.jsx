@@ -18,8 +18,8 @@ const ReviewForm = (props) => {
             inputProps={{ maxLength: 10 }}
             {...register("nickname")}
             required
-            id="Nickname"
-            name="Nickname"
+            id="nickname"
+            name="nickname"
             label="Nickname"
             fullWidth
           />
