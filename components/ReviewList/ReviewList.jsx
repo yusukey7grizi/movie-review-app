@@ -2,7 +2,6 @@ import ReviewItem from "../ReviewItem/ReviewItem";
 import classes from "./ReviewList.module.css";
 
 const ReviewList = (props) => {
-  console.log(props.reviews);
   return (
     <div className={classes.reviewList}>
       {props.reviews.length === 0 ? (
