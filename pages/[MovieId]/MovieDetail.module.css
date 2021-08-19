@@ -1,7 +1,6 @@
 .topContainer {
   display: flex;
   justify-content: space-evenly;
-
   height: 500px;
 }
 
@@ -13,10 +12,11 @@
   margin-left: 50px;
   text-align: left;
   height: 80%;
-  color: aliceblue;
+  color: rgb(240, 248, 255);
 }
 .title {
   margin-bottom: 10%;
+  font-size: 40px;
 }
 .line {
   border-width: 0;
@@ -24,20 +24,34 @@
 }
 .reviewContainer {
   text-align: left;
-  margin-top: 10%;
   background-color: rgb(221, 118, 118);
   border-radius: 25px;
+  margin: auto;
+  margin-top: 25%;
 }
 .poster {
-  height: 65%;
+  height: 500px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .topContainer {
+    margin-top: 300px;
     justify-content: center;
     flex-direction: column;
   }
   .rightContent {
     margin: auto;
+    width: 100%;
   }
+  .reviewContainer {
+    margin-top: 500px;
+  }
+  .title {
+    font-size: 30px;
+    margin-top: 50px;
+  }
+}
+
+.overview {
+  text-align: justify;
 }

@@ -13,10 +13,11 @@ const ReviewItem = (props) => {
       <img className={classes.icon} src={Icon} alt={props.nickname} />
       <div className={classes.box16}>
         <div className={classes.nameRating}>
+          <img className={classes.hiddenIcon} src={Icon} alt={props.nickname} />
           <h3>{props.nickname}</h3>
-          <h3 style={{ marginLeft: "20px" }}>{stars}</h3>
+          <h3 className={classes.stars}>{stars}</h3>
         </div>
-        <p className={classes.content}>{props.comment}</p>
+        <p className={classes.comment}>{props.comment}</p>
       </div>
     </div>
   );

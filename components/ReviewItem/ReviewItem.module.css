@@ -33,3 +33,41 @@
   display: flex;
   justify-content: left;
 }
+.stars {
+  margin-left: 20px;
+}
+.hiddenIcon {
+  visibility: hidden;
+  width: 0;
+}
+.comment {
+  text-align: left;
+}
+@media screen and (max-width: 700px) {
+  .root {
+    flex-direction: column;
+    width: 120%;
+    margin-left: -100px;
+  }
+  .icon {
+    visibility: hidden;
+    width: 0;
+  }
+  .nameRating {
+    margin-left: 50px;
+  }
+  .comment {
+    margin-left: 50px;
+    width: 300px;
+  }
+  .box16 {
+    width: 500px;
+  }
+  .hiddenIcon {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 60px;
+    height: 60px;
+    visibility: visible;
+  }
+}

@@ -5,6 +5,7 @@
   flex-direction: row;
   height: 800px;
   overflow-y: auto;
+  text-align: center;
 }
 .root::-webkit-scrollbar {
   width: 0;

@@ -6,3 +6,7 @@
   height: 55%;
   border-radius: 25px;
 }
+.text {
+  width: 110px;
+  color: rgb(240, 248, 255);
+}

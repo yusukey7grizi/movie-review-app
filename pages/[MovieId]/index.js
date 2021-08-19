@@ -30,7 +30,7 @@ const MovieDetail = (props) => {
       return false;
     }
   };
-  console.log(props.movieData);
+
   return (
     <div className={classes.root}>
       <div className={classes.topContainer}>
@@ -38,7 +38,6 @@ const MovieDetail = (props) => {
           variants={DetailPosterAnimation}
           initial="hidden"
           animate="visible"
-          className={classes.leftContent}
         >
           <img
             className={classes.poster}
@@ -53,11 +52,9 @@ const MovieDetail = (props) => {
           className={classes.rightContent}
         >
           <h1 className={classes.title}>{props.movieData.title}</h1>
-          <h3>{props.movieData.overview}</h3>
+          <h3 className={classes.overview}>{props.movieData.overview}</h3>
           <hr className={classes.line} />
-          <h4>
-            {`Genres:    ${props.movieData.genre.map((genre) => genre)} `}
-          </h4>
+          <h4>{`Genres:    ${props.movieData.genre} `}</h4>
           <h4>{`Language:　${props.movieData.language}`}</h4>
           <h4>{`Released Date:　${props.movieData.released}`}</h4>
         </motion.div>
@@ -82,7 +79,7 @@ const MovieDetail = (props) => {
               setForm(!form);
             }}
             color="default"
-            style={{ height: "60px", width: "20%" }}
+            style={{ height: "60px", width: "20%", marginTop: "15px" }}
           >
             {form ? "Go Back" : " Write a review"}
           </Button>
@@ -162,7 +159,6 @@ export const getStaticProps = async (context) => {
         language: language.english_name,
         genre: genreNames,
         id: selectedMovie.id,
-        background: `https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`,
       },
       reviews: selectedReviews,
     },
