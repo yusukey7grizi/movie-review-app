@@ -14,6 +14,7 @@ const MovieItem = (props) => {
         src={props.image}
         alt={props.title}
       />
+      <h5 className={classes.text}>{props.title}</h5>
     </div>
   );
 };

@@ -19,7 +19,9 @@ const index = (props) => {
         <MovieList Movies={props.NowShowing} />
       </motion.div>
       <motion.div className={classes.listContainer}>
-        <h1 className={classes.title}>Best Movies in {year} </h1>
+        <h1 className={classes.title}>
+          Best Movies in {year} {`>`}{" "}
+        </h1>
         <MovieList Movies={props.Best} />
       </motion.div>{" "}
       <motion.div className={classes.listContainer}>

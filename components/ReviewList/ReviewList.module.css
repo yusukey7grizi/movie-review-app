@@ -2,8 +2,13 @@
   height: 500px;
   overflow-y: auto;
   overflow-x: hidden;
+  text-align: center;
 }
 .reviewList::-webkit-scrollbar {
   width: 0;
   background: transparent;
+}
+.text {
+  font-size: 20px;
+  margin-top: 10%;
 }
