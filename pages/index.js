@@ -25,15 +25,17 @@ const index = (props) => {
         <MovieList Movies={props.Best} />
       </motion.div>{" "}
       <motion.div className={classes.listContainer}>
-        <h1 className={classes.title}>Popular Movies {`>`}</h1>
-        <MovieList Movies={props.Popular} />
+        <h1 className={classes.title}>
+          Best Movies in {year - 1} {`>`}
+        </h1>
+        <MovieList Movies={props.PrevBest} />
       </motion.div>
     </motion.div>
   );
 };
 
 export const getStaticProps = async () => {
-  const api = "api_key=a192b273a2c1e46141694f43fc94d336";
+  const api = process.env.REACT_APP_TMDB_API_KEY;
   const base = "https://api.themoviedb.org/3";
   const today = new Date();
   const year = today.getFullYear();
@@ -48,15 +50,17 @@ export const getStaticProps = async () => {
   const BestUrl = `${base}/discover/movie?primary_release_year=${year}&sort_by=vote_average.desc&${api}`;
   const BestRes = await fetch(BestUrl);
   const BestData = await BestRes.json();
-  // fetch data for Popular Movies
-  const PopularUrl = `${base}/discover/movie?sort_by=popularity.desc&${api}`;
-  const PopularRes = await fetch(PopularUrl);
-  const PopularData = await PopularRes.json();
+  // fetch data for Best Movies of the previous year
+  const PrevBestUrl = `${base}/discover/movie?primary_release_year=${
+    year - 1
+  }&sort_by=vote_average.desc&${api}`;
+  const PrevBestRes = await fetch(PrevBestUrl);
+  const PrevBestData = await PrevBestRes.json();
   // save data in the database
   const allMovies = [
     ...NowShowingData.results,
     ...BestData.results,
-    ...PopularData.results,
+    ...PrevBestData.results,
   ];
   const res = await db.collection("MovieCollection").doc("MovieList");
   await res.set({ movies: allMovies });
@@ -64,7 +68,7 @@ export const getStaticProps = async () => {
     props: {
       NowShowing: NowShowingData.results,
       Best: BestData.results,
-      Popular: PopularData.results,
+      PrevBest: PrevBestData.results,
     },
   };
 };
