@@ -15,14 +15,20 @@ const MovieDetail = (props) => {
   const [form, setForm] = useState(false);
   const router = useRouter();
 
-  const ReviewSubmitHandler = (data) => {
+  const ReviewSubmitHandler = async (data) => {
     if (window.confirm("Are you sure you want to submit it?")) {
-      db.collection("MovieReviews").add({
-        movieId: props.movieData.id,
-        nickname: data.nickname,
-        gender: data.gender,
-        rating: data.rating,
-        comment: data.comment,
+      fetch("/api/Reviews", {
+        method: "POST",
+        body: JSON.stringify({
+          movieId: props.movieData.id,
+          nickname: data.nickname,
+          gender: data.gender,
+          rating: data.rating,
+          comment: data.comment,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       alert("Thank You For Submitting A Review!");
       router.push("/");

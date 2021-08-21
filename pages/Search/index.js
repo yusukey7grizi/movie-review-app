@@ -22,16 +22,8 @@ const index = (props) => {
           id="standard-basic"
           label="Search"
           className={classes.searchInput}
-          InputLabelProps={{
-            style: {
-              width: 400,
-            },
-          }}
           inputProps={{
             maxLength: 50,
-            style: {
-              width: 400,
-            },
           }}
         />
       </div>
