@@ -6,6 +6,7 @@
   height: 800px;
   overflow-y: auto;
   text-align: center;
+  width: 105%;
 }
 .root::-webkit-scrollbar {
   width: 0;
