@@ -1,4 +1,4 @@
-import MovieList from "../components/MovieList/MovieList";
+import MovieList from "../components/movieList/MovieList";
 import classes from "../styles/home.module.css";
 import { HomeAnimation } from "../Animation";
 import { motion } from "framer-motion";

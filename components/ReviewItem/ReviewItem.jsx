@@ -1,4 +1,4 @@
-import classes from "./ReviewItem.module.css";
+import classes from "./reviewItem.module.css";
 const ReviewItem = (props) => {
   var stars = [];
   for (var i = 0; i < props.rating; i++) {
