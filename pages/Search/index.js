@@ -36,8 +36,7 @@ const index = (props) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await db.collection("MovieCollection").doc("MovieList");
-  const data = await res.get();
+  const data = await db.collection("MovieCollection").doc("MovieList").get();
   const movies = data.data().movies;
   return {
     props: {
