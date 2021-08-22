@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
-import ReviewList from "../../components/reviewList/reviewList";
-import classes from "./movieDetail.module.css";
+import ReviewList from "../../components/ReviewList/ReviewList";
+import classes from "./MovieDetail.module.css";
 import { db } from "../../firebase";
 import { motion } from "framer-motion";
 import {
@@ -10,7 +10,7 @@ import {
   DetailTextAnimation,
   ReviewAnimation,
 } from "../../Animation";
-import ReviewForm from "../../components/reviewForm/reviewForm";
+import ReviewForm from "../../components/ReviewForm/ReviewForm";
 const MovieDetail = (props) => {
   const [form, setForm] = useState(false);
   const router = useRouter();
