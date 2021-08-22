@@ -1,5 +1,5 @@
 import MovieList from "../components/movieList/MovieList";
-import classes from "/home.module.css";
+import classes from "../styles/home.module.css";
 import { HomeAnimation } from "../Animation";
 import { motion } from "framer-motion";
 const index = (props) => {
