@@ -1,5 +1,5 @@
-import MovieItem from "../movieItem/MovieItem";
-import classes from "./searchList.module.css";
+import MovieItem from "../MovieItem/MovieItem";
+import classes from "./SearchList.module.css";
 
 const SearchList = (props) => {
   return (

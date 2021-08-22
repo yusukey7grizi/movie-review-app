@@ -41,7 +41,7 @@ const Header = () => {
               <LocalMoviesIcon style={{ color: "white" }} />
             </IconButton>
           </Link>
-          <Link href="/search">
+          <Link href="/Search">
             <IconButton>
               <Typography style={{ color: "white", marginRight: "20px" }}>
                 Search
