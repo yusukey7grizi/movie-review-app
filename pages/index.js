@@ -61,7 +61,7 @@ export const getStaticProps = async () => {
     ...BestData.results,
     ...PrevBestData.results,
   ];
-  await fetch("/api/Movies", {
+  await fetch("http://localhost:3000/api/Movies", {
     method: "POST",
     body: JSON.stringify({ movies: allMovies }),
     headers: {
