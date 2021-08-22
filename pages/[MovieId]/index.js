@@ -121,7 +121,7 @@ export const getStaticProps = async (context) => {
   const movies = await res.data().movies;
   const selectedMovie = movies.find((movie) => movie.id.toString() === movieId);
   // get language
-  const api = "api_key=a192b273a2c1e46141694f43fc94d336";
+  const api = process.env.NEXT_PUBLIC_APKEY;
   const languageRes = await fetch(
     `https://api.themoviedb.org/3/configuration/languages?${api}`
   );
