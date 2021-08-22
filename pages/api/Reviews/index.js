@@ -11,8 +11,6 @@ const handler = async (req, res) => {
       comment: comment,
     });
     res.status(200).json("Review has been published!");
-  } else {
-    res.status(200).json("Review could not be published!");
   }
 };
 
