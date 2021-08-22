@@ -34,7 +34,7 @@ const index = (props) => {
 };
 
 export const getStaticProps = async () => {
-  const api = "api_key=a192b273a2c1e46141694f43fc94d336";
+  const api = process.env.NEXT_PUBLIC_APKEY;
   const base = "https://api.themoviedb.org/3";
   const today = new Date();
   const year = today.getFullYear();
