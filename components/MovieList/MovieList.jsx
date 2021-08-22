@@ -1,4 +1,4 @@
-import MovieItem from "../movieItem/movieItem";
+import MovieItem from "../MovieItem/MovieItem";
 import classes from "./MovieList.module.css";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
