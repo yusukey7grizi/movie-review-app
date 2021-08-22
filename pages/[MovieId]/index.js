@@ -10,7 +10,7 @@ import {
   DetailTextAnimation,
   ReviewAnimation,
 } from "../../Animation";
-import ReviewForm from "../../components/ReviewForm/ReviewForm";
+import ReviewForm from "../../components/reviewForm/ReviewForm";
 const MovieDetail = (props) => {
   const [form, setForm] = useState(false);
   const router = useRouter();
