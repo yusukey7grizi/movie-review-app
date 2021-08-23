@@ -35,7 +35,7 @@ const index = (props) => {
 };
 
 export const getStaticProps = async () => {
-  const api = process.env.NEXT_PUBLIC_APKEY;
+  const api = process.env.NEXT_PUBLIC_TMDB_APIKEY;
   const base = "https://api.themoviedb.org/3";
   const today = new Date();
   const year = today.getFullYear();
