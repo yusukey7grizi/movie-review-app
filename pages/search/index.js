@@ -1,7 +1,7 @@
 import { TextField } from "@material-ui/core";
 import SearchList from "../../components/searchList/SearchList";
 import { db } from "../../firebase";
-import classes from ".//search.module.css";
+import classes from "./search.module.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SearchAnimation } from "../../Animation";
