@@ -97,20 +97,8 @@ const MovieDetail = (props) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  const res = await db.collection("MovieCollection").doc("MovieList").get();
-  const movies = await res.data().movies;
-  const paths = movies.map((movie) => ({
-    params: { movieId: movie.id.toString() },
-  }));
-  return {
-    fallback: false,
-    paths,
-  };
-};
-
-export const getStaticProps = async (context) => {
-  const movieId = context.params.movieId;
+export const getServerSideProps = async (context) => {
+  const movieId = context.query.movieId;
   const res = await db.collection("MovieCollection").doc("MovieList").get();
   const movies = await res.data().movies;
   const selectedMovie = movies.find((movie) => movie.id.toString() === movieId);
