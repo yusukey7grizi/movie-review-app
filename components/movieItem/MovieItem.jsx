@@ -7,7 +7,10 @@ const MovieItem = (props) => {
     <div className={classes.container}>
       <motion.img
         onClick={() => {
-          router.push(`/${props.id}`);
+          router.push({
+            pathname: `/${props.id}`,
+            query: { movieId: props.id },
+          });
         }}
         whileHover={{ scale: 1.1, opacity: 0.6 }}
         className={classes.image}

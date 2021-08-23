@@ -35,7 +35,7 @@ const index = (props) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const data = await db.collection("MovieCollection").doc("MovieList").get();
   const movies = data.data().movies;
   return {

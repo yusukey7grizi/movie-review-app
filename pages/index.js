@@ -34,7 +34,7 @@ const index = (props) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const api = process.env.NEXT_PUBLIC_TMDB_APIKEY;
   const base = "https://api.themoviedb.org/3";
   const today = new Date();
