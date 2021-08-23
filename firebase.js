@@ -12,4 +12,5 @@ if (!firebase.apps.length) {
     databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
   });
 }
+firebase.firestore().settings({ experimentalForceLongPolling: true });
 export const db = firebase.firestore();
