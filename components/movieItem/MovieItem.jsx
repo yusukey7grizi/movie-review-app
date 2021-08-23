@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import classes from ".//movieItem.module.css";
+import classes from "./movieItem.module.css";
 import { useRouter } from "next/router";
 const MovieItem = (props) => {
   const router = useRouter();
