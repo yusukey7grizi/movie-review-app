@@ -2,6 +2,7 @@ import MovieList from "../components/movieList/MovieList";
 import classes from "../styles/home.module.css";
 import { HomeAnimation } from "../Animation";
 import { motion } from "framer-motion";
+import { db } from "../firebase";
 const index = (props) => {
   const today = new Date();
   const year = today.getFullYear();
@@ -61,13 +62,10 @@ export const getStaticProps = async () => {
     ...BestData.results,
     ...PrevBestData.results,
   ];
-  await fetch("/api/Movies", {
-    method: "POST",
-    body: JSON.stringify({ movies: allMovies }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  await db
+    .collection("MovieCollection")
+    .doc("MovieList")
+    .set({ movies: allMovies });
   return {
     props: {
       NowShowing: NowShowingData.results,
