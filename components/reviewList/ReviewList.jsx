@@ -1,5 +1,5 @@
 import ReviewItem from "../reviewItem/ReviewItem";
-import classes from "./reviewList.module.css";
+import classes from ".//reviewList.module.css";
 
 const ReviewList = (props) => {
   return (
