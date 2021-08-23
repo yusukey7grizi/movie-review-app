@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 import ReviewList from "../../components/reviewList/ReviewList";
-import classes from "./movieDetail.module.css";
+import classes from ".//movieDetail.module.css";
 import { db } from "../../firebase";
 import { motion } from "framer-motion";
 import {

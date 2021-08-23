@@ -1,5 +1,5 @@
 import MovieItem from "../movieItem/MovieItem";
-import classes from "./movieList.module.css";
+import classes from ".//movieList.module.css";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { IconButton } from "@material-ui/core";
